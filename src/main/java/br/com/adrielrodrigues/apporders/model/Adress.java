@@ -1,5 +1,9 @@
 package br.com.adrielrodrigues.apporders.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.adrielrodrigues.apporders.controller.dto.AdressDto;
 
 @Entity
 public class Adress {
@@ -20,6 +28,10 @@ public class Adress {
 	private String country;
 	private String zipCode;
 	
+	@Column(name="client_id", updatable=false, insertable=false)
+	private Long clientId;
+	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "client_id", nullable = false)
 	private Client client;
@@ -100,6 +112,43 @@ public class Adress {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
-	
+
+	public Long getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
+	}
+
+	@Override
+	public String toString() {
+		return "Adress [id=" + id + ", adress=" + adress + ", number=" + number + ", city=" + city + ", state=" + state
+				+ ", country=" + country + ", zipCode=" + zipCode + ", client=" + client + "]";
+	}
+
+	// create
+	public static List<AdressDto> toAdress(List<Adress> adresses) {
+		
+		List<AdressDto> adressesDto = new ArrayList<>();
+		
+		adresses.forEach (a -> {
+			
+			AdressDto adressDto = new AdressDto();
+			
+			adressDto.setId(a.getId());
+			adressDto.setAdress(a.getAdress());
+			adressDto.setNumber(a.getNumber());
+			adressDto.setCity(a.getCity());
+			adressDto.setState(a.getState());
+			adressDto.setCountry(a.getCountry());
+			adressDto.setZipCode(a.getZipCode());
+			adressDto.setClientId(a.getClientId());
+			
+			adressesDto.add(adressDto);
+						
+		});
+		
+		return adressesDto;
+	}
 }

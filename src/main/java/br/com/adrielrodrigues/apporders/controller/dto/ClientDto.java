@@ -1,23 +1,14 @@
-package br.com.adrielrodrigues.apporders.model;
+package br.com.adrielrodrigues.apporders.controller.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import br.com.adrielrodrigues.apporders.model.Adress;
+import br.com.adrielrodrigues.apporders.model.Client;
 
-import br.com.adrielrodrigues.apporders.controller.dto.ClientDto;
-
-@Entity
-public class Client {
+public class ClientDto {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String companyName;
 	private String cnpj;
@@ -25,13 +16,12 @@ public class Client {
 	private String phone;
 	private LocalDate clientSince;
 	
-	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Adress> adresses = new ArrayList<>();
 	
-	public Client() {
+	public ClientDto() {
 	}
 	
-	public Client(Long id, String companyName, String cnpj, String email, String phone, LocalDate clientSince) {
+	public ClientDto(Long id, String companyName, String cnpj, String email, String phone, LocalDate clientSince) {
 		this.id = id;
 		this.companyName = companyName;
 		this.cnpj = cnpj;
@@ -95,26 +85,35 @@ public class Client {
 	public void setAdresses(List<Adress> adresses) {
 		this.adresses = adresses;
 	}
-	
-	public static List<ClientDto> toClientDto(List<Client> clients) {
+
+	// to create
+	public static Client toClient(ClientDto clientDto) {
 		
-		List<ClientDto> clientsDto = new ArrayList<>();
+		Client client = new Client();
 		
-		clients.forEach(c -> {
+		client.setId(clientDto.getId());
+		client.setCompanyName(clientDto.getCompanyName());
+		client.setCnpj(clientDto.getCnpj());
+		client.setEmail(clientDto.getEmail());
+		client.setPhone(clientDto.getPhone());
+		client.setClientSince(clientDto.getClientSince());
 		
-		ClientDto clientDto= new ClientDto();
-		
-		clientDto.setId(c.getId());
-		clientDto.setCompanyName(c.getCompanyName());
-		clientDto.setCnpj(c.getCnpj());
-		clientDto.setEmail(c.getEmail());
-		clientDto.setPhone(c.getPhone());
-		clientDto.setClientSince(c.getClientSince());
-		clientDto.setAdresses(c.getAdresses());
-		
-		clientsDto.add(clientDto);});
-		
-		return clientsDto;		
+		return client;		
 	}
 	
+	// to update
+	public static Client toClient(Long id, ClientDto clientDto) {
+		
+		Client client = new Client();
+		
+		client.setId(id);
+		client.setCompanyName(clientDto.getCompanyName());
+		client.setCnpj(clientDto.getCnpj());
+		client.setEmail(clientDto.getEmail());
+		client.setPhone(clientDto.getPhone());
+		client.setClientSince(clientDto.getClientSince());
+		
+		return client;		
+	}
+
 }

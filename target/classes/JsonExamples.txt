@@ -1,0 +1,21 @@
+To Create or update client:
+
+{
+    "companyName": "Client six",
+    "cnpj": "06.006.006/0006-06",
+    "email": "clientsix@emial.com",
+    "phone": "(66)6666-6666",
+    "clientSince": "2022-06-06"
+}
+
+To Create or Update Adress: 
+
+{
+    "adress": "Street six-six",
+    "number": 6,
+    "city": "CitySix",
+    "state": "StateSix",
+    "country": "CountrySix",
+    "zipCode": "66666-660",
+    "clientId": 3
+}
