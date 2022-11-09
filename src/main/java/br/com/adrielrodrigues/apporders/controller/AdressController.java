@@ -2,6 +2,8 @@ package br.com.adrielrodrigues.apporders.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,7 +45,7 @@ public class AdressController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<AdressDto> create(@RequestBody AdressDto adressDto){
+	public ResponseEntity<AdressDto> create(@Valid @RequestBody AdressDto adressDto){
 		
 		Client client = clientRepository.findById(adressDto.getClientId()).get();
 		
