@@ -11,3 +11,17 @@ INSERT INTO ADRESS (adress, number, city, state, country, zip_code, client_id) V
 INSERT INTO ADRESS (adress, number, city, state, country, zip_code, client_id) VALUES ('Street Three-two', '33', 'CityThree', 'StateThree', 'CountryThree', '33333-331', '3');
 INSERT INTO ADRESS (adress, number, city, state, country, zip_code, client_id) VALUES ('Street Four-one', '04', 'CityFour', 'StateFour', 'CountryFour', '44444-440', '4');
 INSERT INTO ADRESS (adress, number, city, state, country, zip_code, client_id) VALUES ('Street Five-one', '05', 'CityFive', 'StateFive', 'CountryFive', '55555-550', '5');
+
+INSERT INTO STORAGE(inventory_date) VALUES ('2022-01-01');
+
+INSERT INTO PRODUCT (description, reference, price, manufacturer, purchase_unit, storage_id) VALUES ('productOne', 'PR-001', '100', 'IndustryOne', 'UN', '1');
+INSERT INTO PRODUCT (description, reference, price, manufacturer, purchase_unit, storage_id) VALUES ('productTwo', 'PR-002', '200', 'IndustryTwo', 'PC', '1');
+INSERT INTO PRODUCT (description, reference, price, manufacturer, purchase_unit, storage_id) VALUES ('productThree', 'PR-003', '300', 'IndustryThree', 'CX', '1');
+INSERT INTO PRODUCT (description, reference, price, manufacturer, purchase_unit, storage_id) VALUES ('productFour', 'PR-004', '400', 'IndustryFour', 'MT', '1');
+INSERT INTO PRODUCT (description, reference, price, manufacturer, purchase_unit, storage_id) VALUES ('productFive', 'PR-005', '500', 'IndustryFive', 'UN', '1');
+
+INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('A-01', '10', '1');
+INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('B-02', '20', '2');
+INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('C-03', '30', '3');
+INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('D-04', '40', '4');
+INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('E-05', '50', '5');

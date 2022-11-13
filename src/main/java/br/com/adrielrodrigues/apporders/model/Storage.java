@@ -10,13 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Storage {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate inventoryDate;
+	private LocalDate inventoryDate = LocalDate.now();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "storage", fetch = FetchType.LAZY)
 	private List<Product> products; 
 	

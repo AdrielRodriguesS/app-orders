@@ -1,6 +1,6 @@
 package br.com.adrielrodrigues.apporders.controller.dto;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.adrielrodrigues.apporders.model.Adress;
@@ -8,14 +8,20 @@ import br.com.adrielrodrigues.apporders.model.Adress;
 public class AdressDto{
 	
 	private Long id;
-	private String adress;
 	
-	@NotNull
+	@NotNull @NotBlank
+	private String adress;
+	@NotNull @NotBlank
 	private Integer number;
+	@NotNull @NotBlank
 	private String city;
+	@NotNull @NotBlank
 	private String state;
+	@NotNull @NotBlank
 	private String country;
+	@NotNull @NotBlank
 	private String zipCode;
+	@NotNull @NotBlank
 	private Long clientId;
 		
 	public AdressDto() {

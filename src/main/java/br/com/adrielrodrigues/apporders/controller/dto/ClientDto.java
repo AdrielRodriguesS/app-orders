@@ -4,14 +4,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import br.com.adrielrodrigues.apporders.model.Adress;
 import br.com.adrielrodrigues.apporders.model.Client;
 
 public class ClientDto {
 	
 	private Long id;
+	@NotNull @NotBlank
 	private String companyName;
 	private String cnpj;
+	@NotNull @NotBlank
 	private String email;
 	private String phone;
 	private LocalDate clientSince;

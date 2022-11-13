@@ -19,3 +19,20 @@ To Create or Update Adress:
     "zipCode": "66666-660",
     "clientId": 3
 }
+
+To create or update Product:
+
+{
+    "description": "productSix",
+    "reference": "PR-006",
+    "price": 600.00,
+    "manufacturer": "IndustrySix",
+    "purchaseUnit": "UN"
+}
+
+To Create or update StorageData
+
+{
+    "location": "B-02",
+    "quantity": 20.0
+}

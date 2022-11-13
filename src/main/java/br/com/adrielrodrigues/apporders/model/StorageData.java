@@ -1,12 +1,18 @@
 package br.com.adrielrodrigues.apporders.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.adrielrodrigues.apporders.controller.dto.StorageDataDto;
 
 @Entity
 public class StorageData {
@@ -14,21 +20,21 @@ public class StorageData {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String location;
-	private Double quanttity;
+	private Double quantity;	
 	
-	
-	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@OneToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
-	
+
 	public StorageData() {
 	}
 
-	public StorageData(Long id, String location, Double quanttity) {
+	public StorageData(Long id, String location, Double quantity) {
 		super();
 		this.id = id;
 		this.location = location;
-		this.quanttity = quanttity;
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
@@ -47,12 +53,12 @@ public class StorageData {
 		this.location = location;
 	}
 
-	public Double getQuanttity() {
-		return quanttity;
+	public Double getQuantity() {
+		return quantity;
 	}
 
-	public void setQuanttity(Double quanttity) {
-		this.quanttity = quanttity;
+	public void setQuantity(Double quantity) {
+		this.quantity = quantity;
 	}
 
 	public Product getProduct() {
@@ -61,6 +67,37 @@ public class StorageData {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public static List<StorageDataDto> toStorageDataDto(List<StorageData> storageData) {
+		
+		List<StorageDataDto> storageDto = new ArrayList<>();
+		
+		storageData.forEach(p -> {
+			
+			StorageDataDto storageDataDto = new StorageDataDto();
+			
+			storageDataDto.setId(p.getId());
+			storageDataDto.setLocation(p.getLocation());
+			storageDataDto.setQuantity(p.getQuantity());
+			
+			storageDto.add(storageDataDto);			
+		});	
+		
+		return storageDto;
+	}	
+
+
+	public static StorageDataDto toStorageDataDto(StorageData storageData) {
+		
+			
+		StorageDataDto storageDataDto = new StorageDataDto();
+		
+		storageDataDto.setId(storageData.getId());
+		storageDataDto.setLocation(storageData.getLocation());
+		storageDataDto.setQuantity(storageData.getQuantity());
+			
+		return storageDataDto;
 	}
 
 }

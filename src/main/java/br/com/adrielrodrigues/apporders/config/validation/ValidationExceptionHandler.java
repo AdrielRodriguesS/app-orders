@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ValidationErrorHandler {
+public class ValidationExceptionHandler {
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -45,7 +45,7 @@ public class ValidationErrorHandler {
 			
 			String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
 			MessageExceptionHandler error = new MessageExceptionHandler(
-					LocalDate.now(), HttpStatus.NOT_FOUND.value(), message);
+					LocalDate.now(), HttpStatus.NOT_FOUND.value(), message, e.getField());
 			errorMessage.add(error);					
 		});
 		

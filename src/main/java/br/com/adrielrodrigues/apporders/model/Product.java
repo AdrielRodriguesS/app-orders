@@ -1,6 +1,8 @@
 package br.com.adrielrodrigues.apporders.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import br.com.adrielrodrigues.apporders.controller.dto.ProductDto;
 
 @Entity
 public class Product {
@@ -26,15 +31,16 @@ public class Product {
 	@Enumerated(EnumType.STRING)
 	private PurchaseUnit purchaseUnit;
 	
-	@OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
+
+	@OneToOne(mappedBy = "product")
 	private StorageData storageData;
 	
-	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name = "storage_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "storage_id")
 	private Storage storage;
 	
-	@OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
-	private QuotationProduct quotationproduct;
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private List<QuotationProduct> quotationProduct = new ArrayList<>();
 	
 	public Product() {
 	}
@@ -112,13 +118,47 @@ public class Product {
 	public void setStorage(Storage storage) {
 		this.storage = storage;
 	}
-
-	public QuotationProduct getQuotationproduct() {
-		return quotationproduct;
+	
+	public List<QuotationProduct> getQuotationProduct() {
+		return quotationProduct;
 	}
 
-	public void setQuotationproduct(QuotationProduct quotationproduct) {
-		this.quotationproduct = quotationproduct;
+	public void setQuotationProduct(List<QuotationProduct> quotationProduct) {
+		this.quotationProduct = quotationProduct;
+	}
+
+	public static List<ProductDto> toProductDto(List<Product> products) {
+
+		List<ProductDto> productsDto = new ArrayList<>();
+		
+		products.forEach(p -> {
+			
+			ProductDto productDto = new ProductDto();
+			
+			productDto.setId(p.getId());
+			productDto.setDescription(p.getDescription());
+			productDto.setReference(p.getReference());
+			productDto.setPrice(p.getPrice());
+			productDto.setManufacturer(p.getManufacturer());
+			productDto.setPurchaseUnit(p.getPurchaseUnit());
+			productsDto.add(productDto);
+			
+		});		
+		return productsDto;
+	}
+	
+	public static ProductDto toProductDto(Product product) {
+
+		ProductDto productDto = new ProductDto();
+			
+			productDto.setId(product.getId());
+			productDto.setDescription(product.getDescription());
+			productDto.setReference(product.getReference());
+			productDto.setPrice(product.getPrice());
+			productDto.setManufacturer(product.getManufacturer());
+			productDto.setPurchaseUnit(product.getPurchaseUnit());
+			
+		return productDto;
 	}	
 	
 }

@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class QuotationProduct {
@@ -19,8 +20,9 @@ public class QuotationProduct {
 	private Integer quantity;
 	private BigDecimal totalPrice;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id")
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "quotation_product_id", nullable = false)
 	private Product product;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
