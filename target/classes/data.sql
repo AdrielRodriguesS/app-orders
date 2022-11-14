@@ -25,3 +25,16 @@ INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('B-02', '20', '
 INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('C-03', '30', '3');
 INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('D-04', '40', '4');
 INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('E-05', '50', '5');
+
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('100', '1000', '1');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('200', '2000', '2');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('300', '3000', '3');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('400', '4000', '4');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('500', '5000', '5');
+
+
+
+
+
+
+

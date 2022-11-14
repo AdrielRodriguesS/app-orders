@@ -1,6 +1,8 @@
 package br.com.adrielrodrigues.apporders.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.adrielrodrigues.apporders.controller.dto.QuotationProductDto;
+
 @Entity
 public class QuotationProduct {
 	
@@ -22,7 +26,7 @@ public class QuotationProduct {
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "quotation_product_id", nullable = false)
+	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +41,6 @@ public class QuotationProduct {
 	}
 
 	public QuotationProduct(Long id, Integer quantity, BigDecimal totalPrice, Product product) {
-		super();
 		this.id = id;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
@@ -90,6 +93,36 @@ public class QuotationProduct {
 
 	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
 		this.purchaseOrder = purchaseOrder;
+	}
+
+	public static List<QuotationProductDto> toQuotationProductDto(List<QuotationProduct> quotations) {
+
+		List<QuotationProductDto> quotationproductsDto = new ArrayList<>();
+		
+		quotations.forEach(q -> {
+			
+			QuotationProductDto quotationProductDto = new QuotationProductDto();
+			
+			quotationProductDto.setId(q.getId());
+			quotationProductDto.setQuantity(q.getQuantity());
+			quotationProductDto.setTotalPrice(q.getTotalPrice());
+			
+			quotationproductsDto.add(quotationProductDto);
+		});
+		
+		return quotationproductsDto;
+	}
+	
+	public static QuotationProductDto toQuotationProductDto(QuotationProduct quotationProduct) {
+			
+			QuotationProductDto quotationProductDto = new QuotationProductDto();
+			
+			quotationProductDto.setId(quotationProduct.getId());
+			quotationProductDto.setQuantity(quotationProduct.getQuantity());
+			quotationProductDto.setTotalPrice(quotationProduct.getTotalPrice());
+
+		
+		return quotationProductDto;
 	}
 
 }
