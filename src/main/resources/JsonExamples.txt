@@ -36,3 +36,9 @@ To Create or update StorageData
     "location": "B-02",
     "quantity": 20.0
 }
+
+To create ou update Storage
+
+    {
+        "inventoryDate": "2022-05-05"
+    }

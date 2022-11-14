@@ -42,10 +42,21 @@ public class StorageDataDto {
 		this.quantity = quantity;
 	}
 
-	public StorageData toStorageData(StorageDataDto storageDataDto) {
+	public static StorageData toStorageData(StorageDataDto storageDataDto) {
 		
 		StorageData storageData = new StorageData();
 		
+		storageData.setLocation(storageDataDto.getLocation());
+		storageData.setQuantity(storageDataDto.getQuantity());
+		
+		return storageData;
+	}
+	
+	public static StorageData toStorageData(StorageDataDto storageDataDto, Long id) {
+		
+		StorageData storageData = new StorageData();
+		
+		storageData.setId(id);
 		storageData.setLocation(storageDataDto.getLocation());
 		storageData.setQuantity(storageDataDto.getQuantity());
 		
