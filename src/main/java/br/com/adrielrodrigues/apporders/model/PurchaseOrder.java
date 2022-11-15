@@ -2,6 +2,7 @@ package br.com.adrielrodrigues.apporders.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,12 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import br.com.adrielrodrigues.apporders.controller.dto.PurchaseOrderDto;
+
 @Entity
 public class PurchaseOrder {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate date;
+	private LocalDate purchaseOrderDate;
 	private BigDecimal finalPrice;
 	
 	@Enumerated(EnumType.STRING)
@@ -30,11 +33,11 @@ public class PurchaseOrder {
 	public PurchaseOrder() {
 	}
 	
-	public PurchaseOrder(Long id, LocalDate date, BigDecimal finalPrice, OrderStatus orderStatus,
+	public PurchaseOrder(Long id, LocalDate purchaseOrderDate, BigDecimal finalPrice, OrderStatus orderStatus,
 			List<QuotationProduct> quotationProducts) {
 		super();
 		this.id = id;
-		this.date = date;
+		this.purchaseOrderDate = purchaseOrderDate;
 		this.finalPrice = finalPrice;
 		this.orderStatus = orderStatus;
 		this.quotationProducts = quotationProducts;
@@ -48,12 +51,12 @@ public class PurchaseOrder {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public LocalDate getPurchaseOrderDate() {
+		return purchaseOrderDate;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setPurchaseOrderDate(LocalDate purchaseOrderDate) {
+		this.purchaseOrderDate = purchaseOrderDate;
 	}
 
 	public BigDecimal getFinalPrice() {
@@ -78,6 +81,38 @@ public class PurchaseOrder {
 
 	public void setQuotationProducts(List<QuotationProduct> quotationProducts) {
 		this.quotationProducts = quotationProducts;
-	}	
+	}
+	
+	public static List<PurchaseOrderDto> toPurchaseOrderDto(List<PurchaseOrder> purchaseOrders){
+		
+		List<PurchaseOrderDto> purchaseOrdersDto = new ArrayList<>();
+		
+		purchaseOrders.forEach(p -> {
+			
+			PurchaseOrderDto purchaseOrderDto = new PurchaseOrderDto();
+			
+			purchaseOrderDto.setId(p.getId());
+			purchaseOrderDto.setPurchaseOrderDate(p.getPurchaseOrderDate());
+			purchaseOrderDto.setFinalPrice(p.getFinalPrice());
+			purchaseOrderDto.setOrderStatus(p.getOrderStatus());
+			
+			purchaseOrdersDto.add(purchaseOrderDto);			
+		});
+		
+		return purchaseOrdersDto;
+	}
+	
+	public static PurchaseOrderDto toPurchaseOrderDto(PurchaseOrder purchaseOrder){
+		
+		
+		PurchaseOrderDto purchaseOrderDto = new PurchaseOrderDto();
+		
+		purchaseOrderDto.setId(purchaseOrder.getId());
+		purchaseOrderDto.setPurchaseOrderDate(purchaseOrder.getPurchaseOrderDate());
+		purchaseOrderDto.setFinalPrice(purchaseOrder.getFinalPrice());
+		purchaseOrderDto.setOrderStatus(purchaseOrder.getOrderStatus());
+		
+		return purchaseOrderDto;
+	}
 
 }

@@ -2,6 +2,7 @@ package br.com.adrielrodrigues.apporders.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,12 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import br.com.adrielrodrigues.apporders.controller.dto.QuotationDto;
+
 @Entity
 public class Quotation {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate date;
+	private LocalDate quotationDate;
 	private BigDecimal finalPrice;
 	
 	@Enumerated(EnumType.STRING)
@@ -30,11 +33,11 @@ public class Quotation {
 	public Quotation() {
 	}
 
-	public Quotation(Long id, LocalDate date, BigDecimal finalPrice, QuotationStatus quotationStatus,
+	public Quotation(Long id, LocalDate quotationDate, BigDecimal finalPrice, QuotationStatus quotationStatus,
 			List<QuotationProduct> quotationProduct) {
 		super();
 		this.id = id;
-		this.date = date;
+		this.quotationDate = quotationDate;
 		this.finalPrice = finalPrice;
 		this.quotationStatus = quotationStatus;
 		this.quotationProducts = quotationProduct;
@@ -48,12 +51,12 @@ public class Quotation {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public LocalDate getQuotationDate() {
+		return quotationDate;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setQuotationDate(LocalDate quotationDate) {
+		this.quotationDate = quotationDate;
 	}
 
 	public BigDecimal getFinalPrice() {
@@ -78,6 +81,38 @@ public class Quotation {
 
 	public void setQuotationProducts(List<QuotationProduct> quotationProducts) {
 		this.quotationProducts = quotationProducts;
+	}
+
+	public static List<QuotationDto> toQuotationDto(List<Quotation> quotations) {
+
+		List<QuotationDto> quotationsDto = new ArrayList<>();
+		
+		quotations.forEach(q -> {
+			
+			QuotationDto quotationDto =  new QuotationDto();
+			
+			quotationDto.setId(q.getId());
+			quotationDto.setQuotationDate(q.getQuotationDate());
+			quotationDto.setFinalPrice(q.getFinalPrice());
+			quotationDto.setQuotationStatus(q.getQuotationStatus());
+			
+			quotationsDto.add(quotationDto);
+		});
+		
+		
+		return quotationsDto;
+	}
+	
+	public static QuotationDto toQuotationDto(Quotation quotation) {
+
+			QuotationDto quotationDto =  new QuotationDto();
+			
+			quotationDto.setId(quotation.getId());
+			quotationDto.setQuotationDate(quotation.getQuotationDate());
+			quotationDto.setFinalPrice(quotation.getFinalPrice());
+			quotationDto.setQuotationStatus(quotation.getQuotationStatus());
+		
+		return quotationDto;
 	}
 	
 }

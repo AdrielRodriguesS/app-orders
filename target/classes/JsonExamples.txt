@@ -46,6 +46,22 @@ To create ou update Storage
 To create or update QuotationProduct
 
 {
-    "quantity": 100,
-    "totalPrice": 1000.00
+    "quantity": 600,
+    "totalPrice": 6000.00
+}
+
+To create or update Quotation
+
+{
+    "quotationDate": "2022-04-04",
+    "finalPrice": 40000.00,
+    "quotationStatus": "WIN"
+}
+
+To create or update Purchase Order
+
+{
+    "purchaseOrderDate": "2022-04-04",
+    "finalPrice": 40000.00,
+    "orderStatus": "DELIVERED"
 }

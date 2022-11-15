@@ -32,7 +32,13 @@ INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('300', '
 INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('400', '4000', '4');
 INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('500', '5000', '5');
 
+INSERT INTO QUOTATION(quotation_date, final_price, quotation_status) VALUES('2022-01-01', '10000', 'LOST');
+INSERT INTO QUOTATION(quotation_date, final_price, quotation_status) VALUES('2022-02-02', '20000', 'WIN');
+INSERT INTO QUOTATION(quotation_date, final_price, quotation_status) VALUES('2022-03-03', '30000', 'LOST');
 
+INSERT INTO PURCHASE_ORDER(purchase_order_date, final_price, order_status) VALUES('2022-01-01', '10000', 'DELIVERED');
+INSERT INTO PURCHASE_ORDER(purchase_order_date, final_price, order_status) VALUES('2022-02-02', '20000', 'NOT_DELIVERED');
+INSERT INTO PURCHASE_ORDER(purchase_order_date, final_price, order_status) VALUES('2022-03-03', '30000', 'DELIVERED');
 
 
 
