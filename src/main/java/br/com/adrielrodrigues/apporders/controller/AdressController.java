@@ -51,6 +51,8 @@ public class AdressController {
 		
 		Client client = clientRepository.findById(adressDto.getClientId()).get();
 		
+		System.out.println(client.getId());
+		
 		Adress adress = AdressDto.toAdress(adressDto);
 		
 		adress.setClient(client);

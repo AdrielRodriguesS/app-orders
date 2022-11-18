@@ -12,11 +12,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class ValidationExceptionHandler {
@@ -41,6 +43,24 @@ public class ValidationExceptionHandler {
 				LocalDate.now(), HttpStatus.NOT_FOUND.value(),"Not Found");
 		return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
 	}
+	
+	//invalid pathVariable
+	@ResponseBody
+	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
+	public ResponseEntity<MessageExceptionHandler> pathError(MethodArgumentTypeMismatchException exception){
+		MessageExceptionHandler errorMessage = new MessageExceptionHandler(
+				LocalDate.now(), HttpStatus.NOT_FOUND.value(),"Not Found");
+		return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+	}
+	
+	//invalid pathVariable
+	@ResponseBody
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	public ResponseEntity<MessageExceptionHandler> pathError(HttpRequestMethodNotSupportedException exception){
+		MessageExceptionHandler errorMessage = new MessageExceptionHandler(
+				LocalDate.now(), HttpStatus.METHOD_NOT_ALLOWED.value(),"Method Not allowed");
+		return new ResponseEntity<>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
+	}	
 	
 	// invalid Json arguments
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
