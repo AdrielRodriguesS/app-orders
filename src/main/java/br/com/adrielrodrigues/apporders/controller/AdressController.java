@@ -1,5 +1,6 @@
 package br.com.adrielrodrigues.apporders.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.adrielrodrigues.apporders.controller.dto.AdressDto;
 import br.com.adrielrodrigues.apporders.model.Adress;
@@ -34,7 +36,7 @@ public class AdressController {
 	@GetMapping
 	public List<AdressDto> findAll(){
 		List<Adress> adresses = adressRepository.findAll();
-		return Adress.toAdress(adresses);
+		return Adress.toAdressDto(adresses);
 	}
 	
 	@GetMapping("/{id}")
@@ -45,28 +47,30 @@ public class AdressController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<AdressDto> create(@Valid @RequestBody AdressDto adressDto){
+	public ResponseEntity<AdressDto> create(@Valid @RequestBody AdressDto adressDto, UriComponentsBuilder uriBuilder){
 		
 		Client client = clientRepository.findById(adressDto.getClientId()).get();
 		
-		Adress adress = AdressDto.toAdressDto(adressDto);
+		Adress adress = AdressDto.toAdress(adressDto);
 		
 		adress.setClient(client);
 		
 		adressRepository.save(adress);
 		
-		return ResponseEntity.ok().build();
+		URI uri = uriBuilder.path("/adress/{id}").buildAndExpand(adress.getId()).toUri();
+		
+		return ResponseEntity.created(uri).body(Adress.toAdressDto(adress));
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<AdressDto> update(
-			@RequestBody AdressDto adressDto, @PathVariable Long id){
+			@Valid @RequestBody AdressDto adressDto, @PathVariable Long id){
 		
 		Client client = clientRepository.findById(adressDto.getClientId()).get();
 		
 		Adress adress = adressRepository.findById(id).get();
 		
-		adress = AdressDto.toAdressDto(adressDto, id);
+		adress = AdressDto.toAdress(adressDto, id);
 		
 		adress.setClient(client);
 		

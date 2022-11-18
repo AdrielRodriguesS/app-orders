@@ -1,5 +1,6 @@
 package br.com.adrielrodrigues.apporders.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.adrielrodrigues.apporders.controller.dto.StorageDto;
 import br.com.adrielrodrigues.apporders.model.Storage;
@@ -39,13 +41,15 @@ public class StorageController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<StorageDto> create(@RequestBody StorageDto storageDto) {
+	public ResponseEntity<StorageDto> create(@RequestBody StorageDto storageDto, UriComponentsBuilder uriBuilder) {
 		
 		Storage storage = StorageDto.toStorage(storageDto);
 		
 		storageRepository.save(storage);
 		
-		return ResponseEntity.ok().build();
+		URI uri = uriBuilder.path("/storages/{id}").buildAndExpand(storage.getId()).toUri();
+		
+		return ResponseEntity.created(uri).body(Storage.toStorageDto(storage));
 	}
 	
 	@PutMapping("/{id}")

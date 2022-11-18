@@ -1,5 +1,6 @@
 package br.com.adrielrodrigues.apporders.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.adrielrodrigues.apporders.controller.dto.ProductDto;
 import br.com.adrielrodrigues.apporders.model.Product;
@@ -39,13 +41,15 @@ public class ProductController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProductDto> create(@RequestBody ProductDto productDto){
+	public ResponseEntity<ProductDto> create(@RequestBody ProductDto productDto, UriComponentsBuilder uriBuilder){
 		
 		Product product = productDto.toProduct(productDto);
 		
 		productRepository.save(product);
 		
-		return ResponseEntity.ok().build();
+		URI uri = uriBuilder.path("/products/{id}").buildAndExpand(product.getId()).toUri();
+		
+		return ResponseEntity.created(uri).body(Product.toProductDto(product));
 	}
 	
 	@PutMapping("/{id}")

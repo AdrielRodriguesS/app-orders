@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import br.com.adrielrodrigues.apporders.controller.dto.ClientDto;
 
@@ -19,6 +21,7 @@ public class Client {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull @NotEmpty
 	private String companyName;
 	private String cnpj;
 	private String email;
@@ -115,6 +118,22 @@ public class Client {
 		clientsDto.add(clientDto);});
 		
 		return clientsDto;		
+	}
+	
+	public static ClientDto toClientDto(Client client) {
+			
+		
+		ClientDto clientDto= new ClientDto();
+		
+		clientDto.setId(client.getId());
+		clientDto.setCompanyName(client.getCompanyName());
+		clientDto.setCnpj(client.getCnpj());
+		clientDto.setEmail(client.getEmail());
+		clientDto.setPhone(client.getPhone());
+		clientDto.setClientSince(client.getClientSince());
+		clientDto.setAdresses(client.getAdresses());
+				
+		return clientDto;		
 	}
 	
 }

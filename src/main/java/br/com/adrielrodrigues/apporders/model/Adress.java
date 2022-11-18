@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,7 +23,9 @@ public class Adress {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull @NotEmpty
 	private String adress;
+	@NotNull
 	private Integer number;
 	private String city;
 	private String state;
@@ -128,7 +132,7 @@ public class Adress {
 	}
 
 	// create
-	public static List<AdressDto> toAdress(List<Adress> adresses) {
+	public static List<AdressDto> toAdressDto(List<Adress> adresses) {
 		
 		List<AdressDto> adressesDto = new ArrayList<>();
 		
@@ -150,5 +154,22 @@ public class Adress {
 		});
 		
 		return adressesDto;
+	}
+	
+	public static AdressDto toAdressDto(Adress adress) {
+			
+			
+			AdressDto adressDto = new AdressDto();
+			
+			adressDto.setId(adress.getId());
+			adressDto.setAdress(adress.getAdress());
+			adressDto.setNumber(adress.getNumber());
+			adressDto.setCity(adress.getCity());
+			adressDto.setState(adress.getState());
+			adressDto.setCountry(adress.getCountry());
+			adressDto.setZipCode(adress.getZipCode());
+			adressDto.setClientId(adress.getClientId());
+		
+		return adressDto;
 	}
 }

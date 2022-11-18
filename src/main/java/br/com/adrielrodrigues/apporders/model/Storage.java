@@ -76,4 +76,15 @@ public class Storage {
 		
 		return storagesDto;
 	}
+	
+	public static StorageDto toStorageDto(Storage storage) {
+			
+		StorageDto storageDto = new StorageDto();
+		
+		storageDto.setId(storage.getId());
+		storageDto.setInventoryDate(storage.getInventoryDate());
+			
+		
+		return storageDto;
+	}
 }

@@ -2,12 +2,16 @@ package br.com.adrielrodrigues.apporders.controller.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import br.com.adrielrodrigues.apporders.model.Product;
 import br.com.adrielrodrigues.apporders.model.PurchaseUnit;
 
 public class ProductDto {
 	
 	private Long id;
+	@NotNull @NotEmpty
 	private String description;
 	private String reference;
 	private BigDecimal price;

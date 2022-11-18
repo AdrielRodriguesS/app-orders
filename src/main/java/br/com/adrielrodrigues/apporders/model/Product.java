@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import br.com.adrielrodrigues.apporders.controller.dto.ProductDto;
 
@@ -23,6 +25,7 @@ public class Product {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull @NotEmpty
 	private String description;
 	private String reference;
 	private BigDecimal price;
