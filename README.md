@@ -58,7 +58,7 @@ GET: .../storage-data
 GET / PUT / DELETE / POST: .../storage-data/{id}
 
 ### Json to use with POST and PUT http methods
-See the file JsonExamples.txt in the projct tree
+See the file JsonExamples.txt in the project tree
 
 ## Technologies
 
