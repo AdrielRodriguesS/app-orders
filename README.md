@@ -19,34 +19,42 @@ The application work with Rest Api and have end-points that will can consume by 
 
 #### Adress:
 GET / POST: .../adress
+
 GET / PUT / DELETE: .../adress/{id}
 
 #### Client:
 GET / POST: .../clients
+
 GET / PUT / DELETE: .../clients/{id}
 
 #### Product:
 GET / POST: .../products
+
 GET / PUT / DELETE: .../products/{id}
 
 #### Purchase Order:
 GET / POST: .../purchase-orders
+
 GET / PUT / DELETE: .../purchase-orders/{id}
 
 #### Quotation:
 GET / POST: .../quotations
+
 GET / PUT / DELETE: .../quotations/{id}
 
 #### Quotation Product:
 GET / POST: .../quotation-products
+
 GET / PUT / DELETE: .../quotation-products/{id}
 
 #### Storage:
 GET / POST: .../storage
+
 GET / PUT / DELETE: .../storage/{id}
 
 #### StorageData:
 GET: .../storage-data
+
 GET / PUT / DELETE / POST: .../storage-data/{id}
 
 ### Json to use with POST and PUT http methods
