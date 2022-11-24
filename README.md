@@ -10,83 +10,83 @@ This applications have the finality to control quotations and purchase orders.
 To this, the application have client data, storage data, product data etc.
 The application work with Rest Api and have end-points that will can consume by other apps.
 
-# End-points available
+## End-points available
 
-##BASE: http://localhost:8080/
+### BASE: http://localhost:8080/
 
-### H2 Database
+#### H2 Database
 ... /h2-console
 
-###Adress:
+#### Adress:
 GET / POST: .../adress
 GET / PUT / DELETE: .../adress/{id}
 
-###Client:
+#### Client:
 GET / POST: .../clients
 GET / PUT / DELETE: .../clients/{id}
 
-###Product:
+#### Product:
 GET / POST: .../products
 GET / PUT / DELETE: .../products/{id}
 
-###Purchase Order:
+#### Purchase Order:
 GET / POST: .../purchase-orders
 GET / PUT / DELETE: .../purchase-orders/{id}
 
-###Quotation:
+#### Quotation:
 GET / POST: .../quotations
 GET / PUT / DELETE: .../quotations/{id}
 
-###Quotation Product:
+#### Quotation Product:
 GET / POST: .../quotation-products
 GET / PUT / DELETE: .../quotation-products/{id}
 
-###Storage:
+#### Storage:
 GET / POST: .../storage
 GET / PUT / DELETE: .../storage/{id}
 
-###StorageData:
+#### StorageData:
 GET: .../storage-data
 GET / PUT / DELETE / POST: .../storage-data/{id}
 
-# Json to use with POST and PUT http methods
+### Json to use with POST and PUT http methods
 See the file JsonExamples.txt in the projct tree
 
-# Technologies
+## Technologies
 
-## Back end
+### Back end
 - Java
 - Spring Boot, Web, Data
 - Jpa
 - H2 Database in memory
 - Maven
 
-## Skills
+### Skills
 - Java OO
 - Rest API
 - CRUD
 - Exception Handling
 
-## Features
+### Features
 - complete CRUD in all entities;
 - Rest API with end points;
 - Spring Data JPA;
 
-# How to use
+### How to use
 
-## Requirements
+#### Requirements
 - Eclipse IDE
 - Java
 - Postman
 
-## clone the repository
+#### clone the repository
 git clone https://github.com/AdrielRodriguesS/app-orders
 
-## Eclipse IDE configurations
+#### Eclipse IDE configurations
 Open the application in Eclipse and atualize the maven dependencies
 
-## Run the project
-### When run the application, the Spring Boot generate a DataBase in memory with the file "data.sql" data.
+### Run the project
+#### When run the application, the Spring Boot generate a DataBase in memory with the file "data.sql" data.
 - Run the main class like java application;
 - Open the postman and choice a http method;
 - To GET and DELETE, use one end point avaliabe above;
@@ -94,7 +94,7 @@ Open the application in Eclipse and atualize the maven dependencies
 - Open the tab Headers, include the key Content-type and value application/json;
 - ENJOY
 
-# Autor
+## Autor
 
 Adriel Rodrigues de Sales
 
