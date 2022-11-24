@@ -12,7 +12,7 @@ The application work with Rest Api and have end-points that will can consume by 
 
 ## End-points available
 
-### BASE: http://localhost:8080/
+#### path: localhost:8080
 
 #### H2 Database
 ... /h2-console
@@ -72,7 +72,7 @@ See the file JsonExamples.txt in the projct tree
 - Rest API with end points;
 - Spring Data JPA;
 
-### How to use
+## How to use
 
 #### Requirements
 - Eclipse IDE
@@ -85,7 +85,7 @@ git clone https://github.com/AdrielRodriguesS/app-orders
 #### Eclipse IDE configurations
 Open the application in Eclipse and atualize the maven dependencies
 
-### Run the project
+## Run the project
 #### When run the application, the Spring Boot generate a DataBase in memory with the file "data.sql" data.
 - Run the main class like java application;
 - Open the postman and choice a http method;
