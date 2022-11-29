@@ -7,5 +7,5 @@ import br.com.adrielrodrigues.apporders.model.Client;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-
+	
 }

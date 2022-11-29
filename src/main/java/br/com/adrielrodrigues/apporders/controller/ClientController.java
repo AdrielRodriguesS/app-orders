@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.adrielrodrigues.apporders.controller.dto.ClientDto;
 import br.com.adrielrodrigues.apporders.model.Client;
+import br.com.adrielrodrigues.apporders.repository.AdressRepository;
 import br.com.adrielrodrigues.apporders.repository.ClientRepository;
 
 @RestController
@@ -25,6 +26,9 @@ public class ClientController {
 	
 	@Autowired
 	private ClientRepository clientRepository;	
+	
+	@Autowired
+	private AdressRepository adressRepository;
 	
 	@GetMapping
 	public List<ClientDto> findAll(){
@@ -69,4 +73,5 @@ public class ClientController {
 		
 		return ResponseEntity.ok().build();
 	}
+
 }

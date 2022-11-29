@@ -87,7 +87,6 @@ public class AdressController {
 		adressRepository.deleteById(id);
 		
 		return ResponseEntity.ok().build();
-	}
-	
+	}	
 
 }

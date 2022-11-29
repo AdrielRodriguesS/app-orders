@@ -26,20 +26,25 @@ INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('C-03', '30', '
 INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('D-04', '40', '4');
 INSERT INTO STORAGE_DATA(location, quantity, product_id) VALUES ('E-05', '50', '5');
 
-INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('100', '1000', '1');
-INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('200', '2000', '2');
-INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('300', '3000', '3');
-INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('400', '4000', '4');
-INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id) VALUES('500', '5000', '5');
+INSERT INTO QUOTATION(quotation_date, final_price, quotation_status, client_id) VALUES('2022-01-01', '10000', 'LOST', '1');
+INSERT INTO QUOTATION(quotation_date, final_price, quotation_status, client_id) VALUES('2022-02-02', '20000', 'WIN', '2');
+INSERT INTO QUOTATION(quotation_date, final_price, quotation_status, client_id) VALUES('2022-03-03', '30000', 'LOST', '3');
 
-INSERT INTO QUOTATION(quotation_date, final_price, quotation_status) VALUES('2022-01-01', '10000', 'LOST');
-INSERT INTO QUOTATION(quotation_date, final_price, quotation_status) VALUES('2022-02-02', '20000', 'WIN');
-INSERT INTO QUOTATION(quotation_date, final_price, quotation_status) VALUES('2022-03-03', '30000', 'LOST');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('1', '100', '1', '1');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('2', '200', '2', '2');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('3', '300', '3', '3');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('4', '400', '4', '1');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('5', '500', '5', '2');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('6', '600', '1', '3');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('7', '700', '2', '1');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('8', '800', '3', '2');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('9', '900', '4', '3');
+INSERT INTO QUOTATION_PRODUCT(quantity, total_price, product_id, quotation_id) VALUES('10', '1000', '5', '1');
+
 
 INSERT INTO PURCHASE_ORDER(purchase_order_date, final_price, order_status) VALUES('2022-01-01', '10000', 'DELIVERED');
 INSERT INTO PURCHASE_ORDER(purchase_order_date, final_price, order_status) VALUES('2022-02-02', '20000', 'NOT_DELIVERED');
 INSERT INTO PURCHASE_ORDER(purchase_order_date, final_price, order_status) VALUES('2022-03-03', '30000', 'DELIVERED');
-
 
 
 
